@@ -2,7 +2,12 @@ const express = require("express");
 const connectDB = require("./DB/connectDB");
 const app = express();
 require("dotenv-safe").config();
+const taskRoute = require("./routes/taskRoutes");
 const PORT = process.env.PORT || 5000;
+
+app.use(express.json());
+
+app.use("/", taskRoute);
 
 const start = async () => {
   try {
