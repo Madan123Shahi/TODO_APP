@@ -1,3 +1,4 @@
+const logger = require("../configuration/logger");
 const Task = require("../models/Task");
 
 // HTTP_Requests
@@ -13,7 +14,7 @@ class TaskController {
       try {
         await fn(req, res, next);
       } catch (error) {
-        console.error("Error", error.message);
+        logger.error("Error", error.message);
         res.status(HTTP_STATUS.BAD_REQUEST).json({ error: error.message });
       }
     };

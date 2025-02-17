@@ -3,6 +3,8 @@ const connectDB = require("./DB/connectDB");
 const app = express();
 require("dotenv-safe").config();
 const taskRoute = require("./routes/taskRoutes");
+const logger = require("./configuration/logger");
+
 const PORT = process.env.PORT || 5000;
 
 app.use(express.json());
@@ -16,21 +18,21 @@ const start = async () => {
     }
     await connectDB(process.env.MONGO_URI);
     app.listen(PORT, () => {
-      console.log(`Server is running successfully at PORT ${PORT}`);
+      logger.info(`Server is running successfully at PORT ${PORT}`);
     });
   } catch (error) {
-    console.error("Failed to start the Server", error.message);
+    logger.error("Failed to start the Server", error.message);
     process.exit(1);
   }
 };
 
 process.on("uncaughtException", (err) => {
-  console.error("uncaughtException", err);
+  logger.error("uncaughtException", err);
   process.exit(1);
 });
 
 process.on("unhandledRejection", (err) => {
-  console.error("unhandledRejection", err);
+  logger.error("unhandledRejection", err);
   process.exit(1);
 });
 start();
