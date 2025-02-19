@@ -1,9 +1,11 @@
 import React from "react";
+import TaskForm from "./components/TaskForm";
 
 const App = () => {
   return (
-    <div>
-      <h1 className="bg-gray-300 min-h-screen">Welcome to the App</h1>
+    <div className="container mx-auto p-4">
+      <h1 className="text-3xl font-bold text-center mb-10">Task Manager</h1>
+      <TaskForm />
     </div>
   );
 };
