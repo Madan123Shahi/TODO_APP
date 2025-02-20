@@ -3,8 +3,8 @@ import TaskForm from "./components/TaskForm";
 
 const App = () => {
   return (
-    <div className="container mx-auto p-4">
-      <h1 className="text-3xl font-bold text-center mb-10">Task Manager</h1>
+    <div className="bg-blue-400 flex flex-col justify-center items-center p-6  min-h-screen">
+      <h1 className="text-4xl font-extrabold text-white">Task Manager</h1>
       <TaskForm />
     </div>
   );
