@@ -11,7 +11,10 @@ export const createTask = createAsyncThunk(
   "tasks/createTask",
   async (taskData, { rejectWithValue }) => {
     try {
-      const response = await axios.post("/create", taskData);
+      const response = await axios.post(
+        "http://localhost:8000/create",
+        taskData
+      );
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response.data);

@@ -5,13 +5,15 @@ import { createTask } from "./../redux/tasks/taskSlice";
 const TaskForm = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [completed, setCompleted] = useState(false);
   const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch.createTask({ title, description });
+    dispatch(createTask({ title, description, completed }));
     setTitle("");
     setDescription("");
+    setCompleted(false);
   };
 
   return (
@@ -39,7 +41,7 @@ const TaskForm = () => {
           required
         />
       </div>
-      <div className="mb-6">
+      <div>
         <label
           className="block text-lg text-blue-500 font-bold mb-2"
           htmlFor="description"
@@ -55,9 +57,23 @@ const TaskForm = () => {
           required
         />
       </div>
+      <div className="my-2">
+        <label
+          htmlFor="completed"
+          className=" text-blue-500 text-lg mr-2 font-bold"
+        >
+          Completed
+        </label>
+        <input
+          type="checkbox"
+          id="completed"
+          checked={completed}
+          onChange={(e) => setCompleted(e.target.checked)}
+        />
+      </div>
       <button
         type="submit"
-        className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-400 transition duration-300"
+        className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-400 transition duration-300 "
       >
         Create Task
       </button>
